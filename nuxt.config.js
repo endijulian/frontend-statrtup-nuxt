@@ -35,13 +35,32 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/auth-next',
     '@nuxtjs/pwa',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://localhost:8080/',
+  },
+
+  auth: {
+    strategies: {
+      login: {
+        scheme: 'local',
+        url: '/api/v1/sessions',
+        method: 'post',
+        propertyName: 'data.token',
+      },
+      logout: false,
+      user: {
+        scheme: 'local',
+        url: '/api/v1/users/fetch',
+        method: 'get',
+        propertyName: 'data'
+      }
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
