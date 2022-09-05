@@ -117,9 +117,7 @@
                   Creating robotic hand for better movement
                 </p>
                 <div class="relative pt-4 progress-bar">
-                  <div
-                    class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200 h-3 rounded-lg"
-                  >
+                  <div class="overflow-hidden h-2 mb-4 text-xs flex bg-gray-200 rounded-lg">
                     <div
                       style="width: 20%"
                       class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-progress progress-striped"
@@ -158,9 +156,7 @@
                   Self driving drone, no worry to drive again
                 </p>
                 <div class="relative pt-4 progress-bar">
-                  <div
-                    class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200 h-3 rounded-lg"
-                  >
+                  <div class="overflow-hidden h-2 mb-4 text-xs flex bg-gray-200 h-3 rounded-lg">
                     <div
                       style="width: 45%"
                       class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-progress progress-striped"
