@@ -49,18 +49,20 @@ export default {
 
   auth: {
     strategies: {
-      login: {
-        scheme: 'local',
-        url: '/api/v1/sessions',
-        method: 'post',
-        propertyName: 'data.token',
-      },
-      logout: false,
-      user: {
-        scheme: 'local',
-        url: '/api/v1/users/fetch',
-        method: 'get',
-        propertyName: 'data'
+      local: {
+        endpoints:{
+          login: {
+            url: '/api/v1/sessions',
+            method: 'post',
+            propertyName: 'data.token',
+          },
+          user: {
+            url: '/api/v1/users/fetch',
+            method: 'get',
+            propertyName: 'data'
+          },
+          logout: false,
+        }
       }
     }
   },
