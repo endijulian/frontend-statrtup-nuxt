@@ -50,22 +50,24 @@ export default {
   auth: {
     strategies: {
       local: {
-        endpoints:{
-          login: {
-            url: '/api/v1/sessions',
-            method: 'post',
-            propertyName: 'data.token',
-          },
-          user: {
-            url: '/api/v1/users/fetch',
-            method: 'get',
-            propertyName: 'data'
-          },
+        token: {
+          property: 'data.token',
+          required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: false,
+          autoFetch: true,
+        },
+        endpoints: {
+          login: { url: '/api/v1/sessions', method: 'post' },
           logout: false,
+          user: { url: '/api/v1/users/fetch', method: 'get'}
         }
       }
     }
   },
+
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
