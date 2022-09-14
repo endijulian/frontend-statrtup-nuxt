@@ -38,8 +38,24 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
     '@nuxtjs/pwa',
   ],
+
+  toast: {
+    position: 'top-center',
+    register: [ // Register custom toasts
+      {
+        name: 'my-success',
+        message: 'Success registred and upload image',
+        options: {
+          type: 'success',
+          theme: 'bubble',
+          duration: 3000
+        }
+      }
+    ]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -57,7 +73,7 @@ export default {
         },
         user: {
           property: false,
-          autoFetch: true,
+          // autoFetch: true,
         },
         endpoints: {
           login: { url: '/api/v1/sessions', method: 'post' },
