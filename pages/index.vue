@@ -213,9 +213,9 @@ export default {
     this.getCampaignData();
   },
   methods: {
-    getCampaignData(){
+    async getCampaignData(){
       this.loading = true;
-      this.$axios
+      await this.$axios
       .get('/api/v1/campaigns')
       .then(res => {
         this.campaigns = res.data.data
@@ -228,9 +228,5 @@ export default {
       });
     }
   }
-  //  async asyncData({ $axios }) {
-  //     const campaigns = await $axios.get('/api/v1/campaigns')
-  //     return { campaigns }
-  //  }
 }
 </script>
