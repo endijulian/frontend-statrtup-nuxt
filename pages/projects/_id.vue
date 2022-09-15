@@ -61,18 +61,29 @@
                   {{ perk }}
                 </li>
               </ul>
-              <input
-                type="number"
-                class="border border-gray-500 block w-full px-6 py-3 mt-4 rounded-full text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
-                placeholder="Amount in Rp"
-                value=""
-              />
-              <nuxt-link
-                to="/fund-success"
-                class="text-center mt-3 button-cta block w-full bg-orange-button hover:bg-green-button text-white font-medium px-6 py-3 text-md rounded-full"
-              >
-                Fund Now
-              </nuxt-link>
+              <template v-if="this.$store.state.auth.loggedIn">
+                <input
+                  type="number"
+                  class="border border-gray-500 block w-full px-6 py-3 mt-4 rounded-full text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
+                  placeholder="Amount in Rp"
+                  v-model.number="transactions.amount"
+                  @keyup.enter="fund"
+                />
+                <button
+                  @click="fund"
+                  class="text-center mt-3 button-cta block w-full bg-orange-button hover:bg-green-button text-white font-medium px-6 py-3 text-md rounded-full"
+                >
+                  Fund Now
+                </button>
+              </template>
+              <template v-else>
+                 <button
+                  @click="$router.push({path: '/login'})"
+                  class="text-center mt-3 button-cta block w-full bg-orange-button hover:bg-green-button text-white font-medium px-6 py-3 text-md rounded-full"
+                >
+                  Sign in to Fund
+                </button>
+              </template>
             </div>
           </div>
         </div>
@@ -123,6 +134,10 @@ export default {
   data(){
     return{
       default_image:'',
+      transactions:{
+        amount: 0,
+        campaign_id: Number.parseInt(this.$route.params.id)
+      }
     }
   },
   mounted(){
@@ -131,6 +146,15 @@ export default {
   methods:{
     changeImage(url){
       this.default_image = url
+    },
+    async fund(){
+      try {
+        let response = await this.$axios.post('/api/v1/transactions', this.transactions)
+        window.location = response.data.data.payment_url
+        console.log(response.data.data.payment_url)
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   async asyncData({$axios, params}) {

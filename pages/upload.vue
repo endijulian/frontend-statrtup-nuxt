@@ -20,7 +20,7 @@
       </div>
     </div>
     <h2 class="font-normal mb-3 text-3xl text-white text-center">
-      Hi, {{ this.$store.state.auth.user.data.name }}
+      Hi, {{ this.$store.state.auth.user.name }}
     </h2>
     <p class="text-white text-center font-light">
       Please upload your selfie
@@ -81,9 +81,11 @@ export default {
         })
         console.log(response)
 
-        this.$router.push({ path: '/login'})
+        this.$router.push({ path: '/register-success' })
+
+        // this.$router.push({ path: '/login'})
         // this.$toast.success('Successfully upload image and registred')
-        this.$toast.global.my_success()
+        // this.$toast.global.my_success()
       } catch (error) {
         console.log(error)
       }
